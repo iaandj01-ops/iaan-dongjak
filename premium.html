@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 다크 모드 폰(크롬 '사이트에 어두운 테마', 삼성 인터넷)이 색을 강제로 뒤집지 않게. 뒤집히면 메뉴 버튼이 안 보이고 노란 등록 버튼이 갈색이 된다 -->
 <meta name="color-scheme" content="only light">
-<!-- 접수 서비스를 바꾸면 connect-src / form-action 의 주소도 같이 바꿀 것 -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com; form-action 'self' https://script.google.com https://script.googleusercontent.com; base-uri 'self'; object-src 'none'">
+<!-- 접수 서비스를 바꾸면 connect-src / form-action 의 주소도 같이 바꿀 것. facebook 주소들은 Meta 픽셀(pixel.js)용 -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://www.facebook.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' https://connect.facebook.net; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.facebook.com; form-action 'self' https://script.google.com https://script.googleusercontent.com; base-uri 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>프리미엄 | 신상도역 이안</title>
 <meta name="description" content="청약제한·전매제한·자격조건 없는 신상도역 이안의 無조건 BENEFIT 8.">
@@ -20,7 +20,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300..800&family=Urbanist:wght@400..800&display=swap">
 <link rel="stylesheet" href="styles.css?v=b56b045d">
-<script src="main.js?v=629adc54" defer></script>
+<!-- Meta Pixel Code -->
+<script src="pixel.js?v=43425bc4" async></script>
+<noscript><img height="1" width="1" hidden alt="" src="https://www.facebook.com/tr?id=868913456211963&amp;ev=PageView&amp;noscript=1"></noscript>
+<!-- End Meta Pixel Code -->
+<script src="main.js?v=84d73767" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">본문 바로가기</a>
