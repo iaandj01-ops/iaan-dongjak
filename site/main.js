@@ -39,6 +39,7 @@ function initLeadForm(form) {
       const result = response.ok ? await response.json() : null;
       if (!result?.ok) throw new Error(`접수 실패 (HTTP ${response.status})`);
       form.reset();
+      window.fbq?.('track', 'CompleteRegistration'); // Meta 픽셀 전환(pixel.js). 광고 차단으로 픽셀이 없으면 건너뛴다
       say('ok', '등록되었습니다. 담당자가 곧 연락드리겠습니다.');
     } catch {
       say('error', FAILED);

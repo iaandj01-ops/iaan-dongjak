@@ -94,7 +94,7 @@ def render(layout, **slots):
 
 def versioned(text):
     """CSS·JS 주소에 내용 해시를 붙인다. 새 HTML 이 캐시된 옛 스크립트와 섞여 화면이 어긋나는 일을 막는다."""
-    for name in ("styles.css", "home.css", "main.js"):
+    for name in ("styles.css", "home.css", "main.js", "pixel.js"):
         with open(os.path.join(OUT, name), "rb") as f:
             digest = hashlib.sha1(f.read()).hexdigest()[:8]
         text = text.replace(f'"{name}"', f'"{name}?v={digest}"')

@@ -52,6 +52,7 @@ python -m http.server 8765
 | 헤더·푸터·`<head>` | `pages/_layout.html` | `python tools/build_pages.py` |
 | 메뉴 이름·순서, 페이지 설명글 | `tools/build_pages.py` 의 `MENU` | `python tools/build_pages.py` |
 | 스타일·스크립트 | `site/styles.css`, `site/home.css`(홈 전용), `site/main.js` | `python tools/build_pages.py` |
+| Meta(페이스북) 픽셀 | `site/pixel.js`(픽셀 ID), `pages/_layout.html` 의 `<noscript>` 이미지 주소 | `python tools/build_pages.py` |
 | 이미지 | `tools/build_assets.py` | `python tools/build_assets.py` |
 
 - CSS·JS 만 고쳤을 때도 `build_pages.py` 를 돌려야 한다. 주소 뒤에 붙는 `?v=` 값이 바뀌어야
@@ -59,6 +60,12 @@ python -m http.server 8765
 - `build_pages.py` 는 깨진 링크·없는 이미지·없는 `#앵커`가 있으면 `site/` 를 건드리지 않고 멈춘다.
 - `build_assets.py` 는 원본 자료 폴더가 있어야 하고 Pillow, PyMuPDF 가 필요하다(Pillow 11.0, PyMuPDF 1.27 에서 확인).
   일부만 다시 만들 수 있다: `python tools/build_assets.py photos | pdf | units | community | leaflet-photos | logo`
+
+- Meta 픽셀은 광고 대행사가 준 공통 스크립트다(2026-10-19, 픽셀 ID `868913456211963`). 모든 페이지 `<head>` 에서 PageView 를 보낸다.
+  전환 이벤트 `CompleteRegistration` 은 관심고객(방문예약) 등록 접수 성공 때(`main.js`)와 전화번호 클릭 때(`pixel.js`) 보낸다.
+  `Content-Security-Policy` 가 인라인 스크립트를 막아 `<script>` 안의 내용을 `site/pixel.js` 로 옮겼고, CSP 에
+  `connect.facebook.net`(script-src), `www.facebook.com`(img-src, connect-src) 을 열었다.
+  픽셀이 가끔 `*.run.app`, `*.on.aws` 로 보내는 부가 요청은 CSP 에 막혀 콘솔에 오류가 찍히지만 PageView 전송과는 상관없다.
 
 ## 이미지
 
