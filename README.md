@@ -64,7 +64,9 @@ python -m http.server 8765
 - Meta 픽셀은 광고 대행사가 준 공통 스크립트다(2026-10-19, 픽셀 ID `868913456211963`). 모든 페이지 `<head>` 에서 PageView 를 보낸다.
   전환 이벤트 `CompleteRegistration` 은 관심고객(방문예약) 등록 접수 성공 때(`main.js`)와 전화번호 클릭 때(`pixel.js`) 보낸다.
   `Content-Security-Policy` 가 인라인 스크립트를 막아 `<script>` 안의 내용을 `site/pixel.js` 로 옮겼고, CSP 에
-  `connect.facebook.net`(script-src), `www.facebook.com`(img-src, connect-src) 을 열었다.
+  `connect.facebook.net`(script-src), `www.facebook.com`(img-src, connect-src, form-action, frame-src) 을 열었다.
+  PageView 는 짧아서 이미지 요청으로 가지만, 전환 이벤트는 길어서 숨은 iframe 의 form POST 로 간다.
+  form-action·frame-src 가 막혀 있으면 PageView 만 잡히고 전환은 조용히 사라진다(2026-10-20 대행사 문의로 확인).
   픽셀이 가끔 `*.run.app`, `*.on.aws` 로 보내는 부가 요청은 CSP 에 막혀 콘솔에 오류가 찍히지만 PageView 전송과는 상관없다.
 
 ## 이미지

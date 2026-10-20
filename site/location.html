@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 다크 모드 폰(크롬 '사이트에 어두운 테마', 삼성 인터넷)이 색을 강제로 뒤집지 않게. 뒤집히면 메뉴 버튼이 안 보이고 노란 등록 버튼이 갈색이 된다 -->
 <meta name="color-scheme" content="only light">
-<!-- 접수 서비스를 바꾸면 connect-src / form-action 의 주소도 같이 바꿀 것. facebook 주소들은 Meta 픽셀(pixel.js)용 -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://www.facebook.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' https://connect.facebook.net; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.facebook.com; form-action 'self' https://script.google.com https://script.googleusercontent.com; base-uri 'self'; object-src 'none'">
+<!-- 접수 서비스를 바꾸면 connect-src / form-action 의 주소도 같이 바꿀 것. facebook 주소들은 Meta 픽셀(pixel.js)용 — 전환 이벤트처럼 긴 이벤트는 숨은 iframe 의 form POST 로 가서 form-action·frame-src 가 필요하다 -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://www.facebook.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' https://connect.facebook.net; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.facebook.com; form-action 'self' https://script.google.com https://script.googleusercontent.com https://www.facebook.com; frame-src https://www.facebook.com; base-uri 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>입지환경 | 신상도역 이안</title>
 <meta name="description" content="7호선 상도역·서부선 신상도역(예정) 더블역세권. 여의도·강남·용산과 빠르게 통하는 신상도역 이안 입지환경.">
