@@ -10,7 +10,12 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '868913456211963');
 fbq('track', 'PageView');
 
-/* 전환 이벤트: 전화번호 클릭. 관심고객·방문예약 등록은 한 폼이라 main.js 의 접수 성공 시점에서 한 번 보낸다 */
+/* 전환 이벤트: 전화번호 클릭. 관심고객·방문예약 등록은 한 폼이라 main.js 의 접수 성공 시점에서 한 번 보낸다.
+   웹에서는 통화가 실제로 걸렸는지 알 수 없어 누른 시점에 보내므로, 같은 사람이 여러 번 눌러도 쿠키로 24시간에 한 번만 센다
+   (2026-10-27 대행사 '전환이 많이 잡힌다' 문의) */
+const TEL_CONVERSION_SECONDS = 24 * 60 * 60;
 document.addEventListener('click', (event) => {
-  if (event.target.closest('a[href^="tel:"]')) fbq('track', 'CompleteRegistration');
+  if (!event.target.closest('a[href^="tel:"]') || document.cookie.includes('tel_conversion=1')) return;
+  document.cookie = `tel_conversion=1; max-age=${TEL_CONVERSION_SECONDS}; path=/; SameSite=Lax`;
+  fbq('track', 'CompleteRegistration');
 });

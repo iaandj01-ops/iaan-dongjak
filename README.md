@@ -63,6 +63,8 @@ python -m http.server 8765
 
 - Meta 픽셀은 광고 대행사가 준 공통 스크립트다(2026-10-19, 픽셀 ID `868913456211963`). 모든 페이지 `<head>` 에서 PageView 를 보낸다.
   전환 이벤트 `CompleteRegistration` 은 관심고객(방문예약) 등록 접수 성공 때(`main.js`)와 전화번호 클릭 때(`pixel.js`) 보낸다.
+  전화번호 클릭은 통화 연결 여부를 알 수 없어 누른 시점 기준이라, `tel_conversion` 쿠키로 브라우저당 24시간에 한 번만 보낸다
+  (2026-10-27 대행사의 전환 과다 문의. 시간은 `pixel.js` 의 `TEL_CONVERSION_SECONDS`).
   `Content-Security-Policy` 가 인라인 스크립트를 막아 `<script>` 안의 내용을 `site/pixel.js` 로 옮겼고, CSP 에
   `connect.facebook.net`(script-src), `www.facebook.com`(img-src, connect-src, form-action, frame-src) 을 열었다.
   PageView 는 짧아서 이미지 요청으로 가지만, 전환 이벤트는 길어서 숨은 iframe 의 form POST 로 간다.
